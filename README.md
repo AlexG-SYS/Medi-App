@@ -1,1 +1,2 @@
-# Medi-App
+# medapp.bz
+HiFi Prototype for MedApp.bz

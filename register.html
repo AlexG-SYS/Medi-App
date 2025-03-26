@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply as a Doctor - MedApp.bz</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Custom Styles -->
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+
+
+</head>
+
+<body>
+    <div id="app">
+        <!-- Load Header -->
+        <div id="header"></div>
+        <div class="container mt-4 p-4">
+            <!-- Apply as Doctor Section -->
+            <section id="apply" class="apply-section">
+                <div class="container">
+                    <h2 class="text-center apply-title pb-4">Register to be Listed as a Doctor</h2>
+                    <div class="row">
+                        <form class="col-12" @submit.prevent="submitForm">
+                            <div class="form-container row">
+                                <!-- Left Column -->
+                                <div class="form-column col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="doctor-name">Full Name</label>
+                                        <input id="doctor-name" type="text" class="form-control w-100 m-0"
+                                            v-model="formData.doctorName" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="email">Email Address</label>
+                                        <input id="email" type="email" class="form-control w-100 m-0"
+                                            v-model="formData.email" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="phone">Phone Number</label>
+                                        <input id="phone" type="tel" class="form-control w-100 m-0"
+                                            v-model="formData.phone" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="doctor-location">Location</label>
+                                        <input id="doctor-location" type="text" class="form-control w-100 m-0"
+                                            v-model="formData.location" required>
+                                    </div>
+                                </div>
+
+                                <!-- Right Column -->
+                                <div class="form-column col-md-6">
+                                    <div class="form-group mb-3">
+                                        <label for="specialty">Specialty</label>
+                                        <input id="specialty" type="text" class="form-control w-100 m-0"
+                                            v-model="formData.specialty" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="experience">Years of Experience</label>
+                                        <input id="experience" type="text" class="form-control w-100 m-0"
+                                            v-model="formData.experience" required>
+                                    </div>
+
+                                    <div class="form-group mb-3">
+                                        <label for="biography">Short Biography</label>
+                                        <textarea id="biography" class="form-control w-100 m-0" rows="5"
+                                            v-model="formData.biography" required></textarea>
+                                    </div>
+
+                                    <div class=" form-group mb-3">
+                                        <label for="formFile" class="form-label">Upload Picture</label>
+                                        <input class="form-control" type="file" id="formFile"
+                                            @change="handleImageUpload">
+                                    </div>
+
+                                </div>
+                                <div class="form-group d-flex justify-content-end">
+                                    <button class="btn btn-primary " type="submit">Submit Application</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Load Footer -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- JavaScript to Load Header and Footer -->
+    <script>
+        function loadComponent(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(id).innerHTML = data);
+        }
+        loadComponent("header", "header.html");
+        loadComponent("footer", "footer.html");
+    </script>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

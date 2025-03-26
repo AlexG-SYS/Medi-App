@@ -1,0 +1,272 @@
+/* Custom Styles for MedApp.bz */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+    --primaryColor: #007BFF;
+    --secondaryColor: #E6EEF7;
+    --highlightColor: #00D4FF;
+    --darkFont: #333;
+    --darkBG: #1761b5;
+}
+
+/* Global Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--darkFont);
+    background-color: var(--secondaryColor);
+    /* Substituted */
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    color: #007BFF !important;
+}
+
+nav {
+    height: fit-content;
+    vertical-align: middle;
+}
+
+.nav-wrapper {
+    background-color: var(--primaryColor);
+    /* Substituted */
+}
+
+.logo img {
+    vertical-align: middle;
+    width: 100px;
+    padding: 0 20px;
+    margin-right: 16px;
+}
+
+.hero-section {
+    position: relative;
+    padding: 50px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--secondaryColor);
+    /* Substituted */
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+    background-color: var(--secondaryColor);
+}
+
+.hero-image img {
+    max-width: 350px;
+    height: auto;
+    border-radius: 10px;
+}
+
+.hero-text {
+    max-width: 500px;
+    text-align: left;
+}
+
+/* Container to hold the doctor cards */
+.section {
+    background-color: var(--secondaryColor);
+}
+
+.doctor-cards-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    /* 2 cards per row */
+    gap: 16px;
+    /* Space between cards */
+    padding: 16px;
+}
+
+/* Individual doctor card styling */
+.doctor-card {
+    display: flex;
+    align-items: center;
+    background-color: var(--secondaryColor);
+    /* Substituted */
+    border: 1px solid var(--primaryColor);
+    /* Substituted */
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.doctor-card:hover {
+    transform: scale(1.02);
+}
+
+.doctor-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 16px;
+    object-fit: cover;
+    border: 2px solid var(--highlightColor);
+    /* Substituted */
+}
+
+.doctor-details {
+    flex: 1;
+}
+
+.doctor-name {
+    font-size: 1.5em;
+    margin: 0 0 8px;
+    color: var(--primaryColor);
+    /* Substituted */
+}
+
+.doctor-specialty {
+    font-size: 1.2em;
+    color: var(--darkFont);
+    /* Substituted */
+    margin: 0 0 4px;
+}
+
+.doctor-location,
+.doctor-rating {
+    margin: 4px 0;
+    font-size: 0.9em;
+    color: var(--darkFont)
+}
+
+.view-profile-btn {
+    margin-top: 12px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: var(--secondaryColor);
+    background-color: var(--primaryColor);
+    /* Substituted */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.view-profile-btn a {
+    color: var(--secondaryColor);
+    /* Left as-is since no matching variable exists */
+    text-decoration: none;
+}
+
+.view-profile-btn:hover {
+    background-color: var(--darkBG);
+    /* Left as-is since no matching variable exists */
+    transform: scale(1.05);
+}
+
+input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    border: none;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+/* Search Bar Section */
+.search-bar-container {
+    width: 100%;
+}
+
+.search-bar {
+    background: var(--secondaryColor);
+    /* Substituted */
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 10px 15px;
+    border: 1px solid var(--primaryColor);
+    /* Substituted */
+}
+
+.search-bar input[type="text"] {
+    width: 85%;
+    padding: 10px 40px;
+    font-size: 1rem;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+    align-self: center;
+}
+
+.search-bar input[type="text"]:focus {
+    border-color: var(--primaryColor);
+    /* Substituted */
+    outline: none;
+}
+
+.search-bar input[type="text"]::placeholder {
+    color: #686868;
+    /* Left as-is since no matching variable exists */
+}
+
+/* Advanced Filter Section */
+.advanced-filter-section {
+    padding: 20px;
+    margin: 20px 0;
+    background-color: #f9f9f9;
+    /* Left as-is since no matching variable exists */
+    border: 1px solid #ddd;
+    /* Left as-is since no matching variable exists */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.advanced-filter-section h5 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.advanced-filter-section select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    /* Left as-is since no matching variable exists */
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #fff;
+    /* Left as-is since no matching variable exists */
+    appearance: none;
+    cursor: pointer;
+}
+
+.advanced-filter-section select:focus {
+    border-color: var(--primaryColor);
+    /* Substituted */
+    outline: none;
+}
+
+.custom-teal-btn {
+    background-color: var(--highlightColor);
+    /* Substituted */
+    color: var(--darkFont);
+    font-size: 1.1rem;
+}
+
+.custom-teal-btn:hover {
+    background-color: var(--secondaryColor)
+        /* Left as-is */
+}
+
+.testimonials-section {
+    background-color: var(--primaryColor);
+}
+
+.page-footer {
+    background-color: var(--darkBG);
+    color: var(--secondaryColor);
+}
