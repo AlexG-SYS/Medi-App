@@ -4,6 +4,7 @@
 :root {
     --primaryColor: #007BFF;
     --secondaryColor: #E6EEF7;
+    --thirdColor: #dbe2ea;
     --highlightColor: #00D4FF;
     --darkFont: #333;
     --darkBG: #1761b5;
@@ -26,7 +27,11 @@ a {
 }
 
 a:hover {
-    color: #007BFF !important;
+    color: white !important;
+}
+
+footer li a:hover {
+    color: var(--primaryColor) !important;
 }
 
 nav {
@@ -171,13 +176,6 @@ nav {
     transform: scale(1.05);
 }
 
-input[type="text"] {
-    padding: 8px;
-    width: 200px;
-    border: none;
-    border-radius: 5px;
-    margin-left: 10px;
-}
 
 /* Search Bar Section */
 .search-bar-container {
@@ -269,4 +267,8 @@ input[type="text"] {
 .page-footer {
     background-color: var(--darkBG);
     color: var(--secondaryColor);
+}
+
+.bg-light-subtle {
+    background-color: var(--thirdColor) !important;
 }
