@@ -70,13 +70,19 @@
 
                                     <div class="form-group mb-3">
                                         <label for="biography">Short Biography</label>
-                                        <textarea id="biography" class="form-control w-100 m-0" rows="5"
+                                        <textarea id="biography" class="form-control w-100 m-0" rows="3"
                                             v-model="formData.biography" required></textarea>
                                     </div>
 
                                     <div class=" form-group mb-3">
                                         <label for="formFile" class="form-label">Upload Picture</label>
                                         <input class="form-control" type="file" id="formFile"
+                                            @change="handleImageUpload">
+                                    </div>
+
+                                    <div class=" form-group mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input class="form-control" type="password" id="password"
                                             @change="handleImageUpload">
                                     </div>
 

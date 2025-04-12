@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Profile - Medi App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+    <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="img/favicon/favicon.svg" />
+</head>
+
+<body>
+    <div id="app">
+        <!-- Load Header -->
+        <div id="header"></div>
+
+        <div class="container mt-4 p-4">
+            <!-- Profile Section -->
+            <section class="doctor-profile-section">
+                <div v-if="doctor" class="card shadow p-3 mb-4">
+                    <div class="row g-4">
+                        <div class="col-md-4 text-center">
+                            <img :src="doctor.Picture" :alt="doctor['Doctor Name']"
+                                class="rounded-circle img-fluid border shadow" />
+                        </div>
+                        <div class="col-md-8">
+                            <h3 class="text-primary pt-4">{{ doctor['Doctor Name'] }}</h3>
+                            <p class="mb-1"><strong>Specialty:</strong> {{ doctor.Specialty }}</p>
+                            <p class="mb-1"><strong>Location:</strong> {{ doctor.Location }}</p>
+                            <p class="mb-1"><strong>Consultation Fee:</strong> ${{ doctor.Fee }}</p>
+                            <p class="text-warning"><strong>Rating:</strong> {{ doctor.Rating }} ⭐</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div v-else class="alert alert-danger text-center">Doctor profile not found.</div>
+            </section>
+
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="edit-profile-tab" data-bs-toggle="tab"
+                        data-bs-target="#edit-profile" type="button" role="tab">Edit Profile</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="edit-availability-tab" data-bs-toggle="tab"
+                        data-bs-target="#edit-availability" type="button" role="tab">Edit Availability</button>
+                </li>
+            </ul>
+
+            <!-- Tabs for Edit Profile and Edit Availability -->
+            <div v-if="doctor">
+                <div class="tab-content shadow p-3" id="profileTabsContent">
+                    <!-- Edit Profile Tab -->
+                    <div class="tab-pane fade show active" id="edit-profile" role="tabpanel">
+                        <h4 class="text-primary mb-4 mt-3 text-center">Edit Profile</h4>
+                        <form @submit.prevent="saveProfile">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" v-model="doctor['Doctor Name']" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Specialty</label>
+                                    <input type="text" class="form-control" v-model="doctor.Specialty" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Location</label>
+                                    <input type="text" class="form-control" v-model="doctor.Location" />
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Consultation Fee ($)</label>
+                                    <input type="number" class="form-control" v-model.number="doctor.Fee" />
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Biography</label>
+                                    <textarea class="form-control" v-model="doctor.Bio" rows="3"></textarea>
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-2">
+                                <button type="submit" class="btn btn-success px-4">Save Changes</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Edit Availability Tab -->
+                    <div class="tab-pane fade" id="edit-availability" role="tabpanel">
+                        <h4 class="text-primary mb-4 mt-3 text-center">Edit Availability</h4>
+                        <form @submit.prevent="saveProfile">
+                            <div class="row g-3">
+                                <div class="col-12">
+                                    <p class="text-center  text-warning">The selected time will apply to the
+                                        current month and the
+                                        following two months.
+                                        Users will only be able to view
+                                        availability for the current month and the next two months.</p>
+                                    <div v-for="(slots, day) in doctor.Availability" :key="day"
+                                        class="mb-3 border rounded p-3">
+                                        <h6 class="fs-5">{{ day }}</h6>
+                                        <div v-for="(slot, index) in slots" :key="index"
+                                            class="row align-items-end mb-2">
+                                            <div class="col-md-3 py-2">
+                                                <label class="form-label">Start Time</label>
+                                                <input type="time" class="form-control" v-model="slot.start" />
+                                            </div>
+                                            <div class="col-md-3 py-2">
+                                                <label class="form-label">End Time</label>
+                                                <input type="time" class="form-control" v-model="slot.end" />
+                                            </div>
+                                            <div class="col-md-3 py-2">
+                                                <label class="form-label">Interval</label>
+                                                <select class="form-select" v-model="slot.interval">
+                                                    <option :value="15">15 minutes</option>
+                                                    <option :value="30">30 minutes</option>
+                                                    <option :value="45">45 minutes</option>
+                                                    <option :value="60">60 minutes</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-auto py-2">
+                                                <button type="button" class="btn btn-danger w-100"
+                                                    @click="removeSlot(day, index)">Remove</button>
+                                            </div>
+                                        </div>
+                                        <button type="button" class="btn btn-outline-primary btn-sm"
+                                            @click="addSlot(day)">
+                                            + Add Availability
+                                        </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="mt-4 mb-2">
+                                <button type="submit" class="btn btn-success px-4">Save Availability</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Load Footer -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Vue Script -->
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                doctor: {
+                    Availability: {
+                        Sunday: [],
+                        Monday: [],
+                        Tuesday: [],
+                        Wednesday: [],
+                        Thursday: [],
+                        Friday: [],
+                        Saturday: []
+                    }
+                },
+                weekDays: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            },
+
+            created() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const doctorId = urlParams.get('doctorId');
+
+                fetch("doctors.json")
+                    .then(response => response.json())
+                    .then(data => {
+                        const foundDoctor = data.find(doc => doc.id == doctorId);
+                        if (foundDoctor) {
+                            foundDoctor.Fee = foundDoctor.Fee || 0;
+                            foundDoctor.Bio = foundDoctor.Bio || '';
+                            if (!foundDoctor.Availability) {
+                                foundDoctor.Availability = {
+                                    Sunday: [],
+                                    Monday: [],
+                                    Tuesday: [],
+                                    Wednesday: [],
+                                    Thursday: [],
+                                    Friday: [],
+                                    Saturday: []
+                                };
+                            }
+                            this.doctor = foundDoctor;
+                        }
+                    });
+            },
+
+            methods: {
+                addSlot(day) {
+                    if (!this.doctor.Availability[day]) {
+                        this.doctor.Availability[day] = [];
+                    }
+                    this.doctor.Availability[day].push({
+                        start: '',
+                        end: '',
+                        interval: 30 // default to 15 minutes
+                    });
+                },
+                removeSlot(day, index) {
+                    this.doctor.Availability[day].splice(index, 1);
+                },
+                saveProfile() {
+                    alert("Profile saved successfully!");
+                    console.log("Updated doctor:", this.doctor);
+                }
+            }
+
+        });
+    </script>
+
+
+    <!-- Load Header & Footer -->
+    <script>
+        function loadComponent(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(id).innerHTML = data);
+        }
+        loadComponent("header", "header.html");
+        loadComponent("footer", "footer.html");
+    </script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

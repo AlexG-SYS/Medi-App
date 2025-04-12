@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Profile - Medi App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+
+
+    <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="img/favicon/favicon.svg" />
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- Load Header -->
+        <div id="header"></div>
+
+        <div class="container mt-4 p-4" v-if="doctor">
+            <!-- Profile Header -->
+            <section class="doctor-profile-section card shadow p-3 mb-4">
+                <div class="row g-4">
+                    <div class="col-md-4 text-center">
+                        <img :src="doctor.Picture" :alt="doctor['Doctor Name']"
+                            class="rounded-circle img-fluid border shadow">
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="text-primary pt-4">{{ doctor['Doctor Name'] }}</h3>
+                        <p class="mb-1"><strong>Specialty:</strong> {{ doctor.Specialty }}</p>
+                        <p class="mb-1"><strong>Location:</strong> {{ doctor.Location }}</p>
+                        <p class="mb-1"><strong>Consultation Fee:</strong> ${{ doctor.Fee }}</p>
+                        <p class="text-warning"><strong>Rating:</strong> {{ doctor.Rating }} ⭐</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tabs Navigation -->
+            <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="info-tab" data-bs-toggle="tab" data-bs-target="#info"
+                        type="button" role="tab">Info</button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="availability-tab" data-bs-toggle="tab" data-bs-target="#availability"
+                        type="button" role="tab">Availability</button>
+                </li>
+            </ul>
+
+            <!-- Tabs Content -->
+            <div class="tab-content border-bottom border-start border-end p-3 shadow" id="profileTabsContent">
+                <!-- Doctor Info Tab -->
+                <div class="tab-pane fade show active" id="info" role="tabpanel">
+                    <div class="bg-light p-3 mb-3 rounded border">
+                        <h5>Biography</h5>
+                        <p>{{ doctor.Bio }}</p>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="reviews-section">
+                        <h5 class="text-primary">User Reviews</h5>
+                        <ul class="list-group ">
+                            <li class="list-group-item d-flex align-items-start p-3 bg-light" v-for="review in reviews"
+                                :key="review.id">
+                                <span class="me-3 text-primary"><i class="material-icons fs-2">person</i></span>
+                                <div>
+                                    <p class="mb-1">{{ review.text }}</p>
+                                    <p class="mb-0 text-warning"><i class="material-icons small">star</i> {{
+                                        review.rating }}</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Availability Tab -->
+                <div class="tab-pane fade" id="availability" role="tabpanel">
+                    <div class="calendar-container mt-3">
+                        <div v-if="upcomingMonths.length">
+                            <div v-for="month in upcomingMonths" :key="month.key" class="calendar-month">
+                                <h3>{{ month.name }} {{ month.year }}</h3>
+                                <div class="calendar-grid p-0">
+                                    <!-- Create headers for the weekdays -->
+                                    <div class="day-name"
+                                        v-for="(day, index) in ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa']" :key="index">
+                                        {{ day
+                                        }}</div>
+
+                                    <!-- Create calendar days -->
+                                    <div v-for="day in month.days" :key="day.date"
+                                        :class="['calendar-day', { 'past-day': day.isPast, 'empty': day.isEmpty, 'active': hasSlot(day.date), 'booked': !hasSlot(day.date) }]"
+                                        @click="day.isActive && openTimeModal(day.date)">
+                                        <!-- Show day number only if it's not an empty cell -->
+                                        {{ day.isEmpty ? '' : new Date(day.date).getDate() }}
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <p v-else>Loading calendar...</p>
+                    </div>
+
+                    <!-- Booking Modal -->
+                    <div class="modal fade" id="timeModal" tabindex="-1" aria-labelledby="timeModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header ">
+                                    <h5 class="modal-title text-center">Select a Time - {{ formatDate(selectedDate) }}
+                                    </h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div v-if="availableTimes.length">
+                                        <div class="list-group">
+                                            <label v-for="time in availableTimes" :key="time" class="list-group-item">
+                                                <input type="radio" name="time" :value="time" v-model="selectedTime" />
+                                                {{ time }}<i class="bi bi-clock ms-2"></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div v-else>
+                                        <p>No available times for this day.</p>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-primary" :disabled="!selectedTime" @click="bookAppointment">
+                                        Book Appointment
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Success Modal -->
+                    <div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content text-center">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="successModalLabel">Appointment Confirmed</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-center">
+                                    <i class="bi bi-patch-check fs-1 text-success"></i>
+                                    <br>
+                                    {{ successMessage }}
+                                </div>
+                                <div class="modal-footer justify-content-center">
+                                    <button type="button" class="btn btn-outline-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fallback if doctor not found -->
+        <div class="container mt-4" v-else>
+            <div class="alert alert-danger text-center">Doctor profile not found.</div>
+        </div>
+
+        <!-- Load Footer -->
+        <div id="footer"></div>
+    </div>
+
+    <!-- Vue.js Logic -->
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                doctor: null,
+                reviews: [
+                    { id: 1, user: "John Doe", rating: 4.5, text: "Great doctor! Very attentive and professional." },
+                    { id: 2, user: "Jane Smith", rating: 5.0, text: "Excellent experience. I felt very well cared for." },
+                    { id: 3, user: "Michael Johnson", rating: 4.0, text: "Good overall. Could improve waiting time." }
+                ],
+                upcomingMonths: [],
+                selectedDate: null,
+                availableTimes: [],
+                selectedTime: null,
+                successMessage: '',
+            },
+            created() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const doctorId = urlParams.get('doctorId');
+                fetch("doctors.json")
+                    .then((response) => response.json())
+                    .then((data) => {
+                        this.doctor = data.find(doctor => doctor.id == doctorId);
+                    })
+                    .catch((error) => console.error("Error fetching doctor data:", error));
+                this.generateCalendar();
+                // existing doctor fetch logic
+            },
+
+            methods: {
+                generateCalendar() {
+                    const today = new Date();
+                    const monthsToShow = 3;
+                    const months = [];
+
+                    for (let i = 0; i < monthsToShow; i++) {
+                        const monthDate = new Date(today.getFullYear(), today.getMonth() + i, 1);
+                        const monthName = monthDate.toLocaleString('default', { month: 'long' });
+                        const year = monthDate.getFullYear();
+                        const days = [];
+                        const daysInMonth = new Date(year, monthDate.getMonth() + 1, 0).getDate();
+
+                        // Get the weekday of the first day of the month (0 = Sunday, 1 = Monday, etc.)
+                        const startDay = monthDate.getDay();
+
+                        // Add empty days to the array for the days before the first of the month
+                        for (let i = 0; i < startDay; i++) {
+                            days.push({ date: "", isPast: false, isEmpty: true });
+                        }
+
+                        // Add the actual days of the month
+                        for (let d = 1; d <= daysInMonth; d++) {
+                            const date = new Date(year, monthDate.getMonth(), d);
+                            const isPast = date < today;
+                            days.push({
+                                date: date, // Store actual Date object here
+                                isPast,
+                                isEmpty: false,
+                                isActive: !isPast
+                            });
+                        }
+
+                        months.push({
+                            key: `${monthName}-${year}`,
+                            name: monthName,
+                            year: year,
+                            days: days
+                        });
+                    }
+
+                    this.upcomingMonths = months;
+                },
+
+
+                openTimeModal(date) {
+                    this.selectedTime = null;
+                    this.selectedDate = date;
+                    const formattedDate = date.toISOString().split('T')[0];
+
+                    this.availableTimes = this.doctor.AvailableSlots
+                        .filter(slot => slot.date === formattedDate)
+                        .map(slot => slot.time);
+
+                    const modal = new bootstrap.Modal(document.getElementById('timeModal'));
+                    modal.show();
+                },
+                formatDate(date) {
+                    return new Date(date).toDateString();
+                },
+                bookAppointment() {
+                    // Optional: update modal content dynamically if needed
+                    this.successMessage = `Appointment booked with ${this.doctor['Doctor Name']} on ${this.formatDate(this.selectedDate)} at ${this.selectedTime}`;
+
+                    // Close the time picker modal
+                    const timeModalEl = document.getElementById("timeModal");
+                    bootstrap.Modal.getInstance(timeModalEl)?.hide();
+
+                    // Open the success modal
+                    const successModalEl = document.getElementById("successModal");
+                    const successModal = new bootstrap.Modal(successModalEl);
+                    successModal.show();
+                },
+
+                hasSlot(date) {
+                    if (!date) return false;
+
+                    try {
+                        // Convert to string in case it's passed as a Date object already
+                        const inputDate = new Date(date);
+
+                        if (isNaN(inputDate.getTime())) return false; // Invalid date
+
+                        const formattedDate = inputDate.toISOString().split('T')[0];
+
+                        return this.doctor.AvailableSlots.some(slot => slot.date === formattedDate);
+                    } catch (e) {
+                        console.error('Error in hasSlot:', e);
+                        return false;
+                    }
+                }
+
+            }
+
+        });
+    </script>
+
+    <!-- JavaScript to Load Header and Footer -->
+    <script>
+        function loadComponent(id, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => document.getElementById(id).innerHTML = data);
+        }
+        loadComponent("header", "header.html");
+        loadComponent("footer", "footer.html");
+    </script>
+
+    <!-- Required Bootstrap and Vue -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

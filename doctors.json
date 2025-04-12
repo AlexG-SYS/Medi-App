@@ -6,7 +6,12 @@
     "Rating": 4.1,
     "Location": "Belize City",
     "Picture": "img/docs/f001.png",
-    "Bio": "Dr. Maria Gomez is a highly skilled general practitioner with over 15 years of experience in providing primary care. Her approach is patient-centered, focusing on preventive care, health education, and the management of chronic diseases."
+    "Bio": "Dr. Maria Gomez is a highly skilled general practitioner with over 15 years of experience in providing primary care. Her approach is patient-centered, focusing on preventive care, health education, and the management of chronic diseases.",
+    "AvailableSlots": [
+      { "date": "2025-04-02", "time": "09:00" },
+      { "date": "2025-04-11", "time": "14:30" },
+      { "date": "2025-04-19", "time": "10:15" }
+    ]
   },
   {
     "id": 2,
@@ -15,7 +20,15 @@
     "Rating": 4.3,
     "Location": "Belmopan",
     "Picture": "img/docs/m002.png",
-    "Bio": "Dr. Carlos Martinez specializes in the diagnosis and treatment of heart-related conditions. With a focus on cardiovascular health, he is committed to using advanced medical technologies and personalized care to help patients maintain heart health."
+    "Bio": "Dr. Carlos Martinez specializes in the diagnosis and treatment of heart-related conditions. With a focus on cardiovascular health, he is committed to using advanced medical technologies and personalized care to help patients maintain heart health.",
+    "AvailableSlots": [
+      { "date": "2025-04-04", "time": "08:45" },
+      { "date": "2025-04-14", "time": "13:00" },
+      { "date": "2025-04-25", "time": "11:30" },
+      { "date": "2025-05-02", "time": "11:30" },
+      { "date": "2025-05-11", "time": "11:30" },
+      { "date": "2025-05-11", "time": "11:00" }
+    ]
   },
   {
     "id": 3,
@@ -24,7 +37,12 @@
     "Rating": 4.5,
     "Location": "San Ignacio",
     "Picture": "img/docs/f003.png",
-    "Bio": "Dr. Ana Rodriguez is a pediatrician who provides compassionate care for children from infancy to adolescence. With a deep commitment to child health, she specializes in childhood immunizations, developmental milestones, and treating common pediatric illnesses."
+    "Bio": "Dr. Ana Rodriguez is a pediatrician who provides compassionate care for children from infancy to adolescence. With a deep commitment to child health, she specializes in childhood immunizations, developmental milestones, and treating common pediatric illnesses.",
+    "AvailableSlots": [
+      { "date": "2025-04-04", "time": "10:00" },
+      { "date": "2025-04-10", "time": "15:45" },
+      { "date": "2025-04-24", "time": "09:30" }
+    ]
   },
   {
     "id": 4,
@@ -33,7 +51,12 @@
     "Rating": 4.0,
     "Location": "Dangriga",
     "Picture": "img/docs/m004.png",
-    "Bio": "Dr. Juan Hernandez is a dermatologist with expertise in treating a wide range of skin conditions. His specialties include acne, eczema, skin cancer screenings, and the use of cutting-edge therapies for skin rejuvenation."
+    "Bio": "Dr. Juan Hernandez is a dermatologist with expertise in treating a wide range of skin conditions. His specialties include acne, eczema, skin cancer screenings, and the use of cutting-edge therapies for skin rejuvenation.",
+    "AvailableSlots": [
+      { "date": "2025-04-07", "time": "11:00" },
+      { "date": "2025-04-16", "time": "13:45" },
+      { "date": "2025-04-22", "time": "09:15" }
+    ]
   },
   {
     "id": 5,
@@ -42,7 +65,12 @@
     "Rating": 3.9,
     "Location": "Orange Walk",
     "Picture": "img/docs/f005.png",
-    "Bio": "Dr. Lucia Perez is a neurologist with a focus on the diagnosis and treatment of neurological disorders, including epilepsy, migraines, and multiple sclerosis. She uses advanced imaging and neurological tests to provide effective treatment plans."
+    "Bio": "Dr. Lucia Perez is a neurologist with a focus on the diagnosis and treatment of neurological disorders, including epilepsy, migraines, and multiple sclerosis. She uses advanced imaging and neurological tests to provide effective treatment plans.",
+    "AvailableSlots": [
+      { "date": "2025-04-03", "time": "10:30" },
+      { "date": "2025-04-13", "time": "12:15" },
+      { "date": "2025-04-27", "time": "15:00" }
+    ]
   },
   {
     "id": 6,
@@ -51,7 +79,12 @@
     "Rating": 4.2,
     "Location": "Corozal",
     "Picture": "img/docs/m006.png",
-    "Bio": "Dr. Miguel Lopez has over 12 years of experience in family medicine, offering a comprehensive range of services from routine check-ups to managing complex medical conditions. He emphasizes early diagnosis and health education."
+    "Bio": "Dr. Miguel Lopez has over 12 years of experience in family medicine, offering a comprehensive range of services from routine check-ups to managing complex medical conditions. He emphasizes early diagnosis and health education.",
+    "AvailableSlots": [
+      { "date": "2025-04-06", "time": "14:00" },
+      { "date": "2025-04-12", "time": "09:00" },
+      { "date": "2025-04-28", "time": "10:45" }
+    ]
   },
   {
     "id": 7,
@@ -60,7 +93,12 @@
     "Rating": 4.6,
     "Location": "Belize City",
     "Picture": "img/docs/featuredFemale001.png",
-    "Bio": "Dr. Sofia Ramirez is an expert in cardiovascular health, with a passion for preventing and managing heart disease. She employs state-of-the-art diagnostic tools and personalized care to help patients achieve optimal heart health."
+    "Bio": "Dr. Sofia Ramirez is an expert in cardiovascular health, with a passion for preventing and managing heart disease. She employs state-of-the-art diagnostic tools and personalized care to help patients achieve optimal heart health.",
+    "AvailableSlots": [
+      { "date": "2025-04-08", "time": "08:30" },
+      { "date": "2025-04-18", "time": "13:30" },
+      { "date": "2025-04-23", "time": "15:30" }
+    ]
   },
   {
     "id": 8,
@@ -69,7 +107,12 @@
     "Rating": 4.1,
     "Location": "San Pedro",
     "Picture": "img/docs/m007.png",
-    "Bio": "Dr. Jose Castillo is a pediatrician who is dedicated to providing the best care for children. He specializes in diagnosing childhood illnesses, immunizations, and ensuring that children develop healthily through their formative years."
+    "Bio": "Dr. Jose Castillo is a pediatrician who is dedicated to providing the best care for children. He specializes in diagnosing childhood illnesses, immunizations, and ensuring that children develop healthily through their formative years.",
+    "AvailableSlots": [
+      { "date": "2025-04-09", "time": "09:45" },
+      { "date": "2025-04-15", "time": "11:15" },
+      { "date": "2025-04-30", "time": "14:45" }
+    ]
   },
   {
     "id": 9,
@@ -78,7 +121,12 @@
     "Rating": 3.8,
     "Location": "Belmopan",
     "Picture": "img/docs/f001.png",
-    "Bio": "Dr. Laura Morales is a dermatologist focused on skincare treatments and the prevention of skin diseases. She has a particular interest in treating conditions such as rosacea, acne, and providing treatments for anti-aging."
+    "Bio": "Dr. Laura Morales is a dermatologist focused on skincare treatments and the prevention of skin diseases. She has a particular interest in treating conditions such as rosacea, acne, and providing treatments for anti-aging.",
+    "AvailableSlots": [
+      { "date": "2025-04-01", "time": "10:00" },
+      { "date": "2025-04-17", "time": "12:45" },
+      { "date": "2025-04-21", "time": "09:30" }
+    ]
   },
   {
     "id": 10,
@@ -87,7 +135,12 @@
     "Rating": 4.0,
     "Location": "San Ignacio",
     "Picture": "img/docs/m009.png",
-    "Bio": "Dr. Luis Sanchez is a neurologist specializing in the management of neurological disorders such as Parkinson's disease, Alzheimer’s, and strokes. He uses the latest treatments and therapies to help improve the quality of life for his patients."
+    "Bio": "Dr. Luis Sanchez is a neurologist specializing in the management of neurological disorders such as Parkinson's disease, Alzheimer’s, and strokes. He uses the latest treatments and therapies to help improve the quality of life for his patients.",
+    "AvailableSlots": [
+      { "date": "2025-04-10", "time": "13:15" },
+      { "date": "2025-04-20", "time": "11:00" },
+      { "date": "2025-04-29", "time": "14:00" }
+    ]
   },
   {
     "id": 11,
@@ -96,7 +149,12 @@
     "Rating": 4.4,
     "Location": "Orange Walk",
     "Picture": "img/docs/f002.png",
-    "Bio": "Dr. Carmen Ortiz is an orthopedic surgeon who specializes in musculoskeletal problems, including fractures, arthritis, and spinal disorders. She is committed to using both surgical and non-surgical techniques to restore mobility and quality of life."
+    "Bio": "Dr. Carmen Ortiz is an orthopedic surgeon who specializes in musculoskeletal problems, including fractures, arthritis, and spinal disorders. She is committed to using both surgical and non-surgical techniques to restore mobility and quality of life.",
+    "AvailableSlots": [
+      { "date": "2025-04-03", "time": "15:30" },
+      { "date": "2025-04-14", "time": "09:30" },
+      { "date": "2025-04-26", "time": "11:45" }
+    ]
   },
   {
     "id": 12,
@@ -105,7 +163,12 @@
     "Rating": 4.7,
     "Location": "Dangriga",
     "Picture": "img/docs/featuredMale001.png",
-    "Bio": "Dr. Pedro Ruiz is a gynecologist with years of experience in women’s health. His practice focuses on preventive gynecological care, family planning, menopause management, and the treatment of reproductive health issues."
+    "Bio": "Dr. Pedro Ruiz is a gynecologist with years of experience in women’s health. His practice focuses on preventive gynecological care, family planning, menopause management, and the treatment of reproductive health issues.",
+    "AvailableSlots": [
+      { "date": "2025-04-05", "time": "10:45" },
+      { "date": "2025-04-13", "time": "12:00" },
+      { "date": "2025-04-25", "time": "09:00" }
+    ]
   },
   {
     "id": 13,
@@ -114,7 +177,12 @@
     "Rating": 3.9,
     "Location": "Belize City",
     "Picture": "img/docs/f003.png",
-    "Bio": "Dr. Elena Vasquez is an ENT specialist with expertise in treating ear, nose, and throat disorders. She offers a variety of treatments, including hearing loss management, sinusitis, and surgical interventions for nasal problems."
+    "Bio": "Dr. Elena Vasquez is an ENT specialist with expertise in treating ear, nose, and throat disorders. She offers a variety of treatments, including hearing loss management, sinusitis, and surgical interventions for nasal problems.",
+    "AvailableSlots": [
+      { "date": "2025-04-07", "time": "09:15" },
+      { "date": "2025-04-11", "time": "11:30" },
+      { "date": "2025-04-22", "time": "13:45" }
+    ]
   },
   {
     "id": 14,
@@ -123,7 +191,12 @@
     "Rating": 4.2,
     "Location": "Corozal",
     "Picture": "img/docs/m001.png",
-    "Bio": "Dr. Ricardo Gomez is an orthopedic surgeon specializing in joint replacements and sports injuries. He is dedicated to providing the best possible care for patients recovering from trauma or surgery."
+    "Bio": "Dr. Ricardo Gomez is an orthopedic surgeon specializing in joint replacements and sports injuries. He is dedicated to providing the best possible care for patients recovering from trauma or surgery.",
+    "AvailableSlots": [
+      { "date": "2025-04-06", "time": "10:00" },
+      { "date": "2025-04-19", "time": "12:30" },
+      { "date": "2025-04-30", "time": "14:15" }
+    ]
   },
   {
     "id": 15,
@@ -132,7 +205,12 @@
     "Rating": 4.1,
     "Location": "San Pedro",
     "Picture": "img/docs/f004.png",
-    "Bio": "Dr. Patricia Diaz is a gynecologist with a passion for providing high-quality care to women of all ages. Her services include routine check-ups, prenatal care, and the treatment of gynecological conditions."
+    "Bio": "Dr. Patricia Diaz is a gynecologist with a passion for providing high-quality care to women of all ages. Her services include routine check-ups, prenatal care, and the treatment of gynecological conditions.",
+    "AvailableSlots": [
+      { "date": "2025-04-02", "time": "11:00" },
+      { "date": "2025-04-09", "time": "13:00" },
+      { "date": "2025-04-24", "time": "15:30" }
+    ]
   },
   {
     "id": 16,
@@ -141,7 +219,12 @@
     "Rating": 3.6,
     "Location": "Belmopan",
     "Picture": "img/docs/m002.png",
-    "Bio": "Dr. Francisco Torres is an ENT specialist who focuses on treating conditions of the ear, nose, and throat, including chronic sinusitis, hearing loss, and sleep apnea. He offers both medical and surgical solutions to his patients."
+    "Bio": "Dr. Francisco Torres is an ENT specialist who focuses on treating conditions of the ear, nose, and throat, including chronic sinusitis, hearing loss, and sleep apnea. He offers both medical and surgical solutions to his patients.",
+    "AvailableSlots": [
+      { "date": "2025-04-08", "time": "10:30" },
+      { "date": "2025-04-15", "time": "14:00" },
+      { "date": "2025-04-28", "time": "09:45" }
+    ]
   },
   {
     "id": 17,
@@ -150,7 +233,12 @@
     "Rating": 4.4,
     "Location": "Belize City",
     "Picture": "img/docs/f005.png",
-    "Bio": "Dr. Gabriela Flores is a compassionate oncologist specializing in cancer diagnosis and treatment. She works closely with patients to develop personalized treatment plans and support them throughout their journey."
+    "Bio": "Dr. Gabriela Flores is a compassionate oncologist specializing in cancer diagnosis and treatment. She works closely with patients to develop personalized treatment plans and support them throughout their journey.",
+    "AvailableSlots": [
+      { "date": "2025-04-01", "time": "09:15" },
+      { "date": "2025-04-17", "time": "11:45" },
+      { "date": "2025-04-26", "time": "15:15" }
+    ]
   },
   {
     "id": 19,
@@ -159,7 +247,12 @@
     "Rating": 4.0,
     "Location": "Orange Walk",
     "Picture": "img/docs/f006.png",
-    "Bio": "Dr. Isabel Guzman is an oncologist with expertise in treating various cancers. She is known for her gentle approach and commitment to guiding patients through cancer treatment with the best possible care."
+    "Bio": "Dr. Isabel Guzman is an oncologist with expertise in treating various cancers. She is known for her gentle approach and commitment to guiding patients through cancer treatment with the best possible care.",
+    "AvailableSlots": [
+      { "date": "2025-04-12", "time": "13:30" },
+      { "date": "2025-04-20", "time": "10:30" },
+      { "date": "2025-04-29", "time": "15:00" }
+    ]
   },
   {
     "id": 20,
@@ -168,6 +261,11 @@
     "Rating": 4.6,
     "Location": "Dangriga",
     "Picture": "img/docs/featuredMale002.png",
-    "Bio": "Dr. Victor Perez is a psychiatrist who specializes in mental health conditions, including depression, anxiety, and stress management. His goal is to help patients lead healthier, more fulfilling lives through tailored therapy."
+    "Bio": "Dr. Victor Perez is a psychiatrist who specializes in mental health conditions, including depression, anxiety, and stress management. His goal is to help patients lead healthier, more fulfilling lives through tailored therapy.",
+    "AvailableSlots": [
+      { "date": "2025-04-04", "time": "14:00" },
+      { "date": "2025-04-16", "time": "09:45" },
+      { "date": "2025-04-23", "time": "13:15" }
+    ]
   }
 ]
