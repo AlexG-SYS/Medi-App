@@ -314,7 +314,7 @@ nav {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 50px;
+    height: 55px;
     width: auto;
     border: 1px solid #ddd;
     border-radius: .8rem;
@@ -368,7 +368,7 @@ nav {
     color: var(--darkBG);
     /* Grayed-out for non-active links */
     display: block;
-    padding: 1rem;
+    padding: .8rem;
     text-decoration: none;
     font-weight: 500;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -384,4 +384,37 @@ nav {
 
 .card {
     border-radius: 1rem;
+}
+
+@media (max-width: 768px) {
+    .calendar-day {
+        width: auto;
+        height: 40px;
+
+    }
+
+    .sidebar {
+        position: absolute;
+        z-index: 1050;
+        width: 250px;
+        height: 100%;
+        left: 0;
+        top: 0;
+        display: none;
+        background-color: var(--secondaryColor);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        padding-top: 1rem;
+    }
+
+    .sidebar.show {
+        display: block !important;
+    }
+
+    canvas {
+        max-width: 100% !important;
+    }
+
+    .card-body {
+        overflow-x: auto;
+    }
 }
